@@ -1,0 +1,112 @@
+// Superclass
+class Person {
+
+    String name;
+    int age;
+    String address;
+    String position;
+    String department;
+
+    Person(String name, int age, String address, String position, String department) {
+        this.name = name;
+        this.age = age;
+        this.address = address; 
+        this.position = position;
+        this.department = department;
+    }
+}
+
+// Subclass
+class Employee extends Person {
+
+    private int id;
+    private double salary;
+    private double bonus;
+    private double overtime;
+    private double deductions;
+
+
+    Employee(String name, int age, String address,String position, String department,
+             int id, double salary, double bonus, double overtime, double deductions) {
+
+        super(name, age, address, position,department);
+
+        this.id = id;
+        this.salary = salary;
+        this.bonus = bonus;
+        this.overtime = overtime;
+        this.deductions = deductions;
+    }
+
+    // Calculate Tax
+    private double calculateTax() {
+        return salary * 0.10;
+
+
+    }
+
+    // Get overtime
+    public double getOvertime() {
+        return overtime;
+    }
+
+    // Calculate Net Salary
+    public double getNetSalary() {
+        double tax = calculateTax();
+        return salary + bonus + overtime  - tax - deductions;
+    }
+
+    
+
+    // Display Employee Information
+    public void displayInfo() {
+
+        double tax = calculateTax();
+        double netSalary = getNetSalary();
+
+        System.out.println("\n==============================");
+        System.out.println(   "  EMPLOYEE PAYSLIP ");
+         System.out.println("==============================");
+
+
+        System.out.println("Employee ID  : " + id);
+        System.out.println("Name         : " + name);
+        System.out.println("Age          : " + age);
+        System.out.println("Address      : " + address);
+        System.out.println("Position     : " + position);
+        System.out.println("Department   : " + department);
+        System.out.println("Basic Salary : " + salary);
+        System.out.println("Bonus        : " + bonus);
+        System.out.println("Overtime     : " + getOvertime());
+        System.out.println("Tax (10%)    : " + tax);
+        System.out.println("Deductions   : " + deductions);
+
+        System.out.println("\n===============================");
+        System.out.println("Net Salary   : " + netSalary);
+        System.out.println("===============================");
+    }
+}
+
+// Main
+public class Main {
+
+    public static void main(String[] args) {
+
+        Employee employee = new Employee(
+            "KENNETH ASENDIDO",
+            25,
+            "NEW ZEALAND ",
+            "PROGRAMMER ",
+            "BACKEND",
+            1001,
+            50000,
+            10000,
+            5000,
+            2500
+            
+        );
+
+        employee.displayInfo();
+    }
+}
+
